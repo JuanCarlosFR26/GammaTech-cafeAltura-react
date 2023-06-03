@@ -17,20 +17,6 @@ const TotalCart = () => {
   });
   const navigate = useNavigate();
 
-
-  const getShip = async () => {
-    const shipRef = doc(db, "shipping", "type");
-    const shipSnap = await getDoc(shipRef);
-
-    if(shipSnap.exists()) {
-        return setShipping(shipSnap.data());
-    }
-  };
-
-  useEffect(() => {
-    getShip()
-  }, [])
-
   return (
     <div>
       <div className="flex flex-col items-start p-6 gap-4 w-[384px] h-[320px] bg-hoverCoffeCard mb-[500px]">
