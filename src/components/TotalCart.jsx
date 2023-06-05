@@ -9,8 +9,6 @@ const TotalCart = () => {
   const { cart, totalPrice, setTotalPrice, shipping, setShipping } =
     useContext(CoffeProvider);
 
-    console.log(totalPrice);
-
   let total = 0;
   cart.forEach((element) => {
     let mult = element.count * element.price;

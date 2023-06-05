@@ -46,7 +46,7 @@ const CheckInput = ({
             id="radio"
             value={value}
             onChange={(e) => handleChange(e.target.value)}
-            isChecked={isChecked}
+            checked={isChecked}
           />
         </div>
         <label className="ml-[5px] w-[657px]">

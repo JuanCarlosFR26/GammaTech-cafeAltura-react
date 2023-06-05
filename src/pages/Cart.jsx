@@ -15,9 +15,9 @@ const Cart = () => {
         <h2 className="font-semibold text-[24px] leading-[28px] text-heroTitle">
           Cesta
         </h2>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center gap-6">
           {
-            cart ? <ProductsCart /> : <ModalEmptyCart />
+            cart.length > 0 ? <ProductsCart /> : <ModalEmptyCart />
           }
           <ShippingCart />
         </div>
