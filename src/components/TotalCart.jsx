@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import { CoffeProvider } from "../context/CoffesProvider";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 const TotalCart = () => {
-  const { cart, totalPrice, setTotalPrice, shipping } =
+  const { cart, totalPrice, setTotalPrice, shipping, setShipping } =
     useContext(CoffeProvider);
+
+    console.log(totalPrice);
 
   let total = 0;
   cart.forEach((element) => {
@@ -18,13 +20,37 @@ const TotalCart = () => {
   const navigate = useNavigate();
 
   const setTotal = async () => {
-
     await setDoc(doc(db, 'price','total'), {
       totalPrice
     })
 
     navigate("/checkout")
   }
+
+  const getShip = async () => {
+    const shipRef = doc(db, "shipping", "type");
+    const shipSnap = await getDoc(shipRef);
+
+    if(shipSnap.exists()) {
+        setShipping(shipSnap.data().type);
+    } else {
+        console.log('No data');
+    }
+  };
+
+  const getTotal = async () => {
+    const priceRef = doc(db, "price", "total");
+    const priceSnap = await getDoc(priceRef);
+
+    if (priceSnap.exists()) {
+      setTotalPrice(priceSnap.data().totalPrice);
+    }
+  };
+
+  useEffect(() => {
+    getShip();
+    getTotal();
+  }, [])
 
   return (
     <div>

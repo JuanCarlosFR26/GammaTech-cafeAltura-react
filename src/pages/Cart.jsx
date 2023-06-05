@@ -3,11 +3,10 @@ import ProductsCart from "../components/ProductsCart";
 import ShippingCart from "../components/ShippingCart";
 import TotalCart from "../components/TotalCart";
 import { CoffeProvider } from "../context/CoffesProvider";
+import ModalEmptyCart from "../components/ModalEmptyCart";
 
 const Cart = () => {
-  const { cart, setCart, shipping } = useContext(CoffeProvider);
-
-  console.log(shipping);
+  const { cart, shipping } = useContext(CoffeProvider);
 
   return (
     <div className="w-[1280px]">
@@ -17,7 +16,9 @@ const Cart = () => {
           Cesta
         </h2>
         <div className="flex flex-col items-center">
-          <ProductsCart />
+          {
+            cart ? <ProductsCart /> : <ModalEmptyCart />
+          }
           <ShippingCart />
         </div>
         </div>

@@ -5,8 +5,6 @@ import Button from "../components/Button";
 const ProductsCart = () => {
   const { cart } = useContext(CoffeProvider);
 
-  console.log(cart);
-
   return (
     <div className="mt-[30px]">
       <div id="frame" className="flex justify-center items-start gap-6 h-auto">
