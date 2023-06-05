@@ -8,7 +8,7 @@ import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 const Shop = () => {
-  const { coffes, setCart, setCoffes, cart } = useContext(CoffeProvider);
+  const { coffes, setCart, setCoffes } = useContext(CoffeProvider);
 
   useEffect(() => {
     getData("https://cafe-de-altura.vercel.app/api/products").then((res) =>

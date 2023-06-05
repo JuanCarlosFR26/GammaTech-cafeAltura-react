@@ -11,7 +11,7 @@ const CheckInput = ({
   isChecked,
   value,
 }) => {
-  const { setShipping, shipping } = useContext(CoffeProvider);
+  const { setShipping } = useContext(CoffeProvider);
 
 
   const handleChange = async (e) => {
@@ -46,6 +46,7 @@ const CheckInput = ({
             id="radio"
             value={value}
             onChange={(e) => handleChange(e.target.value)}
+            isChecked={isChecked}
           />
         </div>
         <label className="ml-[5px] w-[657px]">

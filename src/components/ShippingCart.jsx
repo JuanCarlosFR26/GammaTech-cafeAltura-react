@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import CheckInput from "./CheckInput";
+import { CoffeProvider } from "../context/CoffesProvider";
 
 const ShippingCart = () => {
+
+  const { shipping } = useContext(CoffeProvider);
 
   return (
     <div>
@@ -15,7 +18,7 @@ const ShippingCart = () => {
           "flex items-center gap-[16px] w-[776px] h-[36px] mt-[20px] mb-[20px]"
         }
         value={'free'}
-        isChecked={true}
+        isChecked={shipping === 'free' ? true : false}
       />
       <CheckInput
         text={"Envío urgente 24h"}
@@ -25,6 +28,7 @@ const ShippingCart = () => {
         }
         price={"9,00€"}
         value={'urgent'}
+        isChecked={shipping === 'urgent' ? true : false}
       />
     </div>
   );

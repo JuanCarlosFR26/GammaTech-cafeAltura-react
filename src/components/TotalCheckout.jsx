@@ -11,14 +11,19 @@ const TotalCheckout = () => {
     const getShip = async () => {
         const shipRef = doc(db, "shipping", "type");
         const shipSnap = await getDoc(shipRef);
-    
+        const results = shipSnap.data();
         if(shipSnap.exists()) {
-            setShipping(shipSnap.data());
+            setShipping(results);
         } else {
             console.log('No data');
         }
       };
 
+      useEffect(() => {
+        getShip();
+      }, [])
+
+    //   console.log(shipping);
 
     return (
         <div>

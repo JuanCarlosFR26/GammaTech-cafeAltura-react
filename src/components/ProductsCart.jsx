@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import { CoffeProvider } from "../context/CoffesProvider";
 import Button from "../components/Button";
-import { updateDoc, doc, getDoc } from "firebase/firestore";
-import { db } from "../firebaseConfig";
 
 const ProductsCart = () => {
-  const { cart, setCart } = useContext(CoffeProvider);
+  const { cart } = useContext(CoffeProvider);
 
   console.log(cart);
 

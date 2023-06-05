@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import { CoffeProvider } from "../context/CoffesProvider";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 const TotalCart = () => {
-  const { cart, totalPrice, setTotalPrice, shipping, setShipping } =
+  const { cart, totalPrice, setTotalPrice, shipping } =
     useContext(CoffeProvider);
 
   let total = 0;
@@ -16,6 +16,15 @@ const TotalCart = () => {
     setTotalPrice(total);
   });
   const navigate = useNavigate();
+
+  const setTotal = async () => {
+
+    await setDoc(doc(db, 'price','total'), {
+      totalPrice
+    })
+
+    navigate("/checkout")
+  }
 
   return (
     <div>
@@ -52,7 +61,7 @@ const TotalCart = () => {
             className={
               "flex items-start py-[12px] px-[24px] w-[132px] h-[40px] bg-heroTitle rounded text-white text-[14px] leading-[16px]"
             }
-            onClick={() => navigate("/checkout")}
+            onClick={() => setTotal()}
           />
           <Button
             text={"Seguir comprando"}
