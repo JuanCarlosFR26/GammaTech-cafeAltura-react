@@ -92,6 +92,7 @@ const TotalCart = () => {
             className={
               "flex items-start py-[12px] px-[24px] w-[172px] h-[40px] rounded text-heroTitle text-[14px] leading-[16px] font-bold hover:bg-heroTitle hover:text-white"
             }
+            onClick={() => navigate('/shop')}
           />
         </div>
       </div>
